@@ -1,0 +1,64 @@
+version: '3.1'
+
+services:
+
+  db:
+    build:
+      context: ./postgres
+    image: jzsun/postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: welcome1
+      POSTGRES_USER: postgres
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports: 
+      - 5432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data/pgdata
+
+  jira:
+    build:
+      context: ./jira
+    depends_on:
+      - db
+    image: jzsun/jira
+    restart: always
+    volumes:
+      - jirasoftware:/opt/jirasoftware
+      - jirahome:/opt/jirahome
+    ports:
+      - 8080:8080
+
+  confluence:
+    build:
+      context: ./confluence
+    depends_on:
+      - db
+    image: jzsun/confluence
+    restart: always
+    volumes:
+      - confluencesoftware:/opt/confluencesoftware
+      - confluencehome:/opt/confluencehome
+    ports:
+      - 8090:8090
+      - 8091:8091
+
+  crowd:
+    build:
+      context: ./crowd
+    depends_on:
+      - db
+    image: jzsun/crowd
+    restart: always
+    volumes:
+      - crowdsoftware:/opt/crowdsoftware
+    ports:
+      - 8095:8095
+
+volumes:
+  jirasoftware:
+  jirahome:
+  pgdata:
+  confluencesoftware:
+  confluencehome:
+  crowdsoftware:
