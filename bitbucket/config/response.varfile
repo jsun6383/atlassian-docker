@@ -1,0 +1,9 @@
+# install4j response file for Bitbucket 5.6.2
+app.bitbucketHome=/opt/bitbuckethome
+app.defaultInstallDir=/opt/bitbucketsoftware
+app.install.service$Boolean=true
+httpPort=7990
+installation.type=INSTALL
+launch.application$Boolean=true
+sys.adminRights$Boolean=true
+sys.languageId=en
