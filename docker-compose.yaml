@@ -29,6 +29,15 @@ services:
     ports:
       - 8080:8080
 
+  jira-nginx:
+    build:
+      context: ./jira-nginx
+    depends_on:
+      - jira
+    image: jzsun/jira-nginx
+    ports:
+      - 8081:8081
+
   confluence:
     build:
       context: ./confluence
