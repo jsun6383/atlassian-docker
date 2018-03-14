@@ -77,6 +77,16 @@ services:
     ports:
       - 7990:7990
 
+  bamboo:
+    build:
+      context: ./bamboo
+    image: jzsun/bamboo
+    restart: always
+    volumes:
+      - bamboo:/opt/bamboo
+    ports:
+      - 8085:8085
+
 volumes:
   jirasoftware:
   jirahome:
@@ -86,3 +96,4 @@ volumes:
   crowdsoftware:
   bitbuckethome:
   bitbucketsoftware:
+  bamboo:
