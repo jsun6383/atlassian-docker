@@ -67,13 +67,10 @@ services:
   bitbucket:
     build:
       context: ./bitbucket
-    depends_on:
-      - db
     image: jzsun/bitbucket
     restart: always
     volumes:
-      - bitbucketsoftware:/opt/bitbucketsoftware
-      - bitbuckethome:/opt/bitbuckethome
+      - bitbucket:/opt/bitbucket
     ports:
       - 7990:7990
 
@@ -94,6 +91,5 @@ volumes:
   confluencesoftware:
   confluencehome:
   crowdsoftware:
-  bitbuckethome:
-  bitbucketsoftware:
+  bitbucket:
   bamboo:

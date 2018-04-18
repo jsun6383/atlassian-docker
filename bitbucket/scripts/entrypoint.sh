@@ -2,9 +2,11 @@
 
 shut_down() {
     echo "stopping bitbucket..."
-    /opt/bitbucketsoftware/bin/stop-bitbucket.sh
+    /opt/bitbucket/software/bin/stop-bitbucket.sh
 }
 
-trap "shut_down" SIGKILL SIGTERM SIGHUP SIGINT EXIT
+trap "shut_down" SIGTERM SIGHUP SIGINT EXIT
 
-/opt/bitbucketsoftware/bin/start-bitbucket.sh -fg
+/opt/bitbucket/software/bin/start-bitbucket.sh -fg &
+
+wait
